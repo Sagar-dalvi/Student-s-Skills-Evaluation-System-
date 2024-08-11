@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Additional CSS for enhancing the website's appearance */
+    
+        /* Header styles */
+        header {
+            background-color: #5a0000;
+            color: #fff;
+            padding: 20px 0;
+            position: relative;
+            z-index: 2;
+        }
+    
+        /* Horizontal Navbar styles */
+        nav ul.horizontal-nav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+    
+        nav ul.horizontal-nav li {
+            display: inline;
+            margin: 0 15px;
+            vertical-align: middle;
+        }
+    
+        nav ul.horizontal-nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+    
+        nav ul.horizontal-nav a:hover {
+            color: #ffcc00;
+        }
+    
+        /* Vertical Navbar styles */
+        .vertical-navbar {
+            background-color: #343a40;
+            color: #fff;
+            width: 200px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            z-index: 1;
+            padding-top: 60px;
+        }
+    
+        .vertical-navbar ul.vertical-nav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+    
+        .vertical-navbar li.vertical-nav-item {
+            margin: 10px 0;
+        }
+    
+        .vertical-navbar a.vertical-nav-link {
+            text-decoration: none;
+            color: #fff;
+            font-size: 24px; /* Increased font size */
+            font-weight: bold;
+            padding: 20px 20px; /* Increased padding for larger elements */
+            display: block;
+            transition: background-color 0.3s;
+        }
+    
+        .vertical-navbar a.vertical-nav-link:hover {
+            background-color: #800000;
+        }
+    
+        .vertical-navbar .dropdown .dropbtn {
+            text-decoration: none;
+            color: #fff;
+            font-size: 20px; /* Increase font size */
+            font-weight: bold;
+            padding: 15px 20px; /* Increase padding for larger elements */
+            display: block;
+            transition: background-color 0.3s;
+        }
+    
+        .dropdown-content {
+            display: none;
+            margin-left: 10px;
+        }
+    
+        .dropdown.active .dropdown-content {
+            display: block;
+        }
+    
+        .content {
+            margin-left: 200px;
+            z-index: 0;
+            padding: 20px;
+        }
+
+        
+        /* Additional styles for content */
+        .content h1 {
+            color: #333;
+            font-size: 36px;
+        }
+        
+        .content p {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        .content2 {
+        margin-left: 200px;
+        z-index: 0;
+        padding: 10px;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI';
+            font-weight: 400;
+            background-color: #ededed;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .content {
+            flex: 1; /* Allow content to grow and push the footer down */
+            padding: 20px; /* Add padding for content separation */
+        }
+        
+        .footer {
+            padding: 40px 0;
+            background-color: #ffffff;
+            /* You can keep this as is, no need for position or bottom properties */
+        }
+          
+          .footer .social {
+            text-align: center;
+            padding-bottom: 25px;
+            color: #4b4c4d;
+          }
+          
+          .footer .social a {
+            font-size: 24px;
+            color: inherit;
+            border: 1px solid #ccc;
+            width: 40px;
+            height: 40px;
+            line-height: 38px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 50%;
+            margin: 0 8px;
+            opacity: 0.75;
+          }
+          
+          .footer .social a:hover {
+            opacity: 0.9;
+          }
+          
+          .footer ul {
+            margin-top: 0;
+            padding: 0;
+            list-style: none;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 0;
+          }
+          
+          .footer ul a {
+            color: inherit;
+            text-decoration: none;
+            opacity: 0.8;
+          }
+          
+          .footer ul li {
+            display: inline-block;
+            padding: 0 15px;
+          }
+          
+          .footer ul a:hover {
+            opacity: 1;
+          }
+          
+          .footer .copyright {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 13px;
+            color: #aaa;
+          }
+    </style>
+    
+    
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.querySelector('.dropdown');
+            dropdown.classList.toggle('active');
+        }
+        
+        function closeDropdown() {
+            const dropdown = document.querySelector('.dropdown');
+            dropdown.classList.remove('active');
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="horizontal-nav">
+                <li style="font-size: large"><b>Student Evaluation System</b></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+                <li><a href="/login">Login/Signup</a></li>
+            </ul>
+        </nav>
+    </header>
+    <nav class="vertical-navbar">
+        <ul class="vertical-nav">
+            <li class="vertical-nav-item">
+                <div class="dropdown" onclick="toggleDropdown()">
+                    <a class="dropbtn" href="#">Evaluation Page</a>
+                    <div class="dropdown-content">
+                        <a class="vertical-nav-link" href="/certifications" onclick="closeDropdown()">Certifications</a>
+                        <a class="vertical-nav-link" href="/project" onclick="closeDropdown()">Project</a>
+                        <a class="vertical-nav-link" href="/programming" onclick="closeDropdown()">Programming Skill</a>
+                        <a class="vertical-nav-link" href="/sports" onclick="closeDropdown()">Sports</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="content2">{% block body %}{% endblock  %}</div>
+    {% comment %} <div class="content">
+        <!-- Your page content goes here -->
+        <h1>Welcome to My Website</h1>
+        <p>360 Degree Student Evaluation system</p>
+        <img src="https://thumbs.dreamstime.com/b/old-book-flying-letters-magic-light-background-bookshelf-library-ancient-books-as-symbol-knowledge-history-218640948.jpg" alt="Books">
+    </div> {% endcomment %}
+<div class="content">
+    <section class="footer">
+        <div class="social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-snapchat"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+        </div>
+        <ul class="list">
+            <li>
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="#">Services</a>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#">Terms</a>
+            </li>
+            <li>
+                <a href="#">Privacy Policy</a>
+            </li>
+        </ul>
+        <p class="copyright">Future Coders @ 2021</p>
+    </section>
+</div>
+
+    
+</body>
+</html>

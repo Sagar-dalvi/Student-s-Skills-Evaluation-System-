@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>About Us | CoderGirl</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap">
+  <!-- Include Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    .about-us {
+      height: 100vh;
+      width: 100%;
+      padding: 90px 0;
+      background: #ddd;
+    }
+    .pic {
+      height: auto;
+      width:  302px;
+    }
+    .about {
+      width: 1130px;
+      max-width: 85%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+    .text {
+      width: 540px;
+      text-align: justify; /* Align text justified */
+    }
+    .text h5 {
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      color: #333;
+      text-transform: uppercase; /* Uppercase text */
+    }
+    span {
+      color: #4070f4;
+    }
+    .text p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #555;
+    }
+    .data {
+      margin-top: 30px;
+    }
+    .hire {
+      font-size: 18px;
+      background: #4070f4;
+      color: #fff;
+      text-decoration: none;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 6px;
+      transition: 0.5s;
+      display: inline-block;
+    }
+    .hire:hover {
+      background: #000;
+      border: 1px solid #4070f4;
+    }
+    .contact-info {
+      margin-top: 40px;
+      text-align: right; /* Align text to the right */
+    }
+    .contact-info p {
+      font-size: 20px; /* Increase font size */
+      color: #333; /* Change color */
+      margin-bottom: 15px; /* Increase bottom margin */
+    }
+    .contact-info p i {
+      margin-right: 15px; /* Increase right margin */
+      font-size: 24px; /* Increase icon size */
+      color: #4070f4; /* Change icon color */
+    }
+    
+  </style>
+</head>
+<body>
+  <section class="about-us">
+    <div class="about">
+      <!--<img src="girl.png" class="pic">-->
+      <div class="text">
+        <h5><span>Student's Skills Evaluation System</span></h5>
+        <p>"Welcome to our innovative web application, where we redefine student evaluation by embracing a holistic approach. Our platform transcends traditional metrics, offering a comprehensive assessment that encompasses academics, certifications, programming prowess, project endeavors, and athletic achievements.
+            Through a seamless and user-friendly interface, students can input their information, while educators and evaluators gain access to a secure dashboard for in-depth analysis. Leveraging APIs and advanced algorithms, we ensure precise evaluation based on diverse parameters.
+            
+            Join us on this journey of empowerment, where students receive personalized progress reports, empowering them to excel and thrive in their educational journey."</p>
+        <div class="data">
+        </div>
+        <div class="contact-info">
+          <p><i class="fas fa-phone"></i> Contact: +1234567890</p>
+          <p><i class="fas fa-map-marker-alt"></i> Location: Svkm iot, Dhule, India</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
+
+
+
+{% endblock body %}

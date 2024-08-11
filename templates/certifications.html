@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:  rgb(226, 243, 250);
+        }
+       
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(13, 97, 242, 0.2);
+        }
+       
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+       
+        .dropdown {
+            margin-bottom: 20px;
+        }
+       
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #555;
+        }
+       
+        select, input[type="text"], textarea, input[type="file"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+       
+        input[type="file"] {
+            width: calc(100% - 24px);
+        }
+       
+        .form-group {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            transition: all 0.3s ease;
+        }
+       
+        .form-group:hover {
+            transform: scale(1.02);
+            box-shadow: 0px 0px 30px hsla(0, 97%, 49%, 0.102);
+            background-color: #f5edf5;
+        }
+       
+        .form-group label {
+            font-weight: normal;
+            color: #666;
+            margin-bottom: 10px;
+            display: block;
+        }
+       
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certifications</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Certifications</h1>
+        <div class="dropdown">
+            <label for="fieldCount">Select the number of Certificates you have achieved</label>
+            <select id="fieldCount" onchange="generateFields()">
+                <option value="0">Select</option>
+                <option value="1">1 Certificate</option>
+                <option value="2">2 Certificates</option>
+                <option value="3">3 Certificates</option>
+                <option value="4">4 Certificates</option>
+            </select>   
+        </div>
+
+        <form id="dynamicForm" class="form">
+            <!-- Fields will be generated here -->
+        </form>
+    </div>
+
+    <script>
+        function generateFields() {
+            const fieldCount = parseInt(document.getElementById("fieldCount").value);
+            const form = document.getElementById("dynamicForm");
+            form.innerHTML = ""; // Clear existing fields
+    
+            if (fieldCount > 0) {
+                for (let i = 1; i <= fieldCount; i++) {
+                    const fieldNumber = i;
+                    const fieldDiv = document.createElement("div");
+                    fieldDiv.className = "form-group";
+    
+                    const titleLabel = document.createElement("label");
+                    titleLabel.textContent = `Certificate ${fieldNumber} Title:`;
+                    fieldDiv.appendChild(titleLabel);
+    
+                    const titleInput = document.createElement("input");
+                    titleInput.type = "text";
+                    titleInput.name = `title_${fieldNumber}`;
+                    fieldDiv.appendChild(titleInput);
+    
+                    const descLabel = document.createElement("label");
+                    descLabel.textContent = `Certificate ${fieldNumber} Description:`;
+                    fieldDiv.appendChild(descLabel);
+    
+                    const descInput = document.createElement("textarea");
+                    descInput.name = `description_${fieldNumber}`;
+                    fieldDiv.appendChild(descInput);
+    
+                    const uploadLabel = document.createElement("label");
+                    uploadLabel.textContent = `Upload Image of Certificate ${fieldNumber}`;
+                    fieldDiv.appendChild(uploadLabel);
+    
+                    const uploadInput = document.createElement("input");
+                    uploadInput.type = "file";
+                    uploadInput.name = `image_${fieldNumber}`;
+                    fieldDiv.appendChild(uploadInput);
+    
+                    // Add "Attempt Test" button
+                    const attemptTestButton = document.createElement("button");
+                    attemptTestButton.textContent = `Attempt Test for Certificate ${fieldNumber}`;
+                    attemptTestButton.type = "button"; // Set type as button to prevent form submission
+                    attemptTestButton.onclick = function() {
+                        const certificateTitle = titleInput.value.toLowerCase(); // Convert to lowercase for case-insensitive comparison
+                        const uploadedImage = uploadInput.files[0];
+                        if (uploadedImage) {
+                            if (certificateTitle.includes('html')) {
+                                window.location.href = '/html_test'; // Redirect to HTML test page
+                            } else if (certificateTitle.includes('python')) {
+                                window.location.href = '/python'; // Redirect to CSS test page
+                            } else if (certificateTitle.includes('javascript')) {
+                                window.location.href = '/path/to/javascript/test'; // Redirect to JavaScript test page
+                            } else {
+                                alert('No test found for this certificate title.'); // Alert if no matching test found
+                            }
+                        } else {
+                            alert('Please upload the certificate image before attempting the test.');
+                        }
+                    };
+                    fieldDiv.appendChild(attemptTestButton);
+    
+                    form.appendChild(fieldDiv);
+                }
+            }
+        }
+    </script>
+    
+</body>
+</html>

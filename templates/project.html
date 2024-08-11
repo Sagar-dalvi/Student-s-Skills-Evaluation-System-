@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color:  #c9f0ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #f7f3f7;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #0921f91a;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0a0a0a;
+        }
+
+        label {
+            font-weight: bold;
+            border-radius: 0%;
+            border-block-color: black;
+        }
+
+        select, input[type="text"], input[type="file"], textarea, input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ccbbbb;
+            border-radius: 5px;
+        }
+        .form-group:hover {
+            transform: scale(1.02);
+            box-shadow: 0px 0px 30px hsla(0, 97%, 49%, 0.102);
+            background-color: #f5edf5;
+        }
+
+        select {
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .dynamic-field {
+            margin-bottom: 20px;
+            padding: 40px;
+            border: 0.5px solid #0c0101;
+            box-shadow: #007bff;
+           
+        }
+        input[type=".container"]:hover{
+             transform: scale(1.02);
+             box-shadow: 0px 0px 30px rgb(224, 222, 222);
+               
+        }
+        input[type=".dynamic-field"]:hover{
+            background-color: rgb(246, 236, 246);
+        }
+    </style>
+    <script>
+        function generateFields() {
+            var fieldSelect = document.getElementById("field");
+            var fieldsContainer = document.getElementById("fieldsContainer");
+            var selectedField = parseInt(fieldSelect.value);
+            fieldsContainer.innerHTML = '';
+
+            for (var i = 1; i <= selectedField; i++) {
+                var fieldDiv = document.createElement('div');
+                fieldDiv.className = 'dynamic-field';
+
+                var fieldTitleLabel = document.createElement('label');
+                fieldTitleLabel.innerHTML = 'Title of Project ' + i + ':';
+                var fieldTitleInput = document.createElement('input');
+                fieldTitleInput.type = 'text';
+                fieldTitleInput.name = 'projectTitle' + i;
+
+                var fieldDescriptionLabel = document.createElement('label');
+                fieldDescriptionLabel.innerHTML = 'Description of Project ' + i + ':';
+                var fieldDescriptionTextarea = document.createElement('textarea');
+                fieldDescriptionTextarea.name = 'projectDescription' + i;
+                fieldDescriptionTextarea.rows = '4';
+
+                var fieldFileLabel = document.createElement('label');
+                fieldFileLabel.innerHTML = 'Upload Project Image ' + i + ':';
+                var fieldFileInput = document.createElement('input');
+                fieldFileInput.type = 'file';
+                fieldFileInput.name = 'projectImage' + i;
+                fieldFileInput.accept = 'image/*';
+
+                var fieldGithubLabel = document.createElement('label');
+                fieldGithubLabel.innerHTML = 'GitHub Link of Project ' + i + ':';
+                var fieldGithubInput = document.createElement('input');
+                fieldGithubInput.type = 'text';
+                fieldGithubInput.name = 'projectGithub' + i;
+
+                fieldDiv.appendChild(fieldTitleLabel);
+                fieldDiv.appendChild(fieldTitleInput);
+                fieldDiv.appendChild(fieldDescriptionLabel);
+                fieldDiv.appendChild(fieldDescriptionTextarea);
+                fieldDiv.appendChild(fieldFileLabel);
+                fieldDiv.appendChild(fieldFileInput);
+                fieldDiv.appendChild(fieldGithubLabel);
+                fieldDiv.appendChild(fieldGithubInput);
+
+                fieldsContainer.appendChild(fieldDiv);
+
+                // Create a separate "Upload Project" button for each project
+                var uploadButton = document.createElement('input');
+                uploadButton.type = 'submit';
+                uploadButton.value = 'Upload Project ' + i;
+                fieldsContainer.appendChild(uploadButton);
+             
+            }
+
+            var dynamicFields = document.querySelectorAll('.dynamic-field');
+            dynamicFields.forEach(function(field) {
+                field.style.display = 'block';
+                
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Project Upload</h1>
+        <form action="#" method="post">
+            {% csrf_token %}
+            <label for="field">Select the number of Projects you have:</label>
+            <select id="field" name="field" onchange="generateFields()">
+                <option value="0">Select</option>
+                <option value="1">Project 1</option>
+                <option value="2">Project 2</option>
+                <option value="3">Project 3</option>
+                <option value="4">Project 4</option>
+                <option value="5">Project 5</option>
+            </select>
+
+            <div id="fieldsContainer">
+                <!-- Dynamic fields and buttons will be generated here -->
+                {% csrf_token %}
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+{% endblock body %} 

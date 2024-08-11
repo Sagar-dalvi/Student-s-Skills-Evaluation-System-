@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #c9f0ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px hsla(245, 94%, 42%, 0.2);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: rgb(11, 11, 11);
+        }
+
+        .dropdown {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px; 
+        }
+
+        select, input[type="text"], textarea, input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            background-color:  #f7f3f7;
+            text-align: center;
+        }
+
+        .form-group {
+            padding: 20px;
+            border: 1px solid hsl(0, 0%, 8%);
+            border-radius: 5px;
+            margin-bottom: 20px;
+            background-color:  #f7f3f7;
+        }
+
+        .form-group label {
+            font-weight: normal;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Skill Selection</h1>
+        <div class="dropdown">
+            <label for="level">Select the number of skills (0-5):</label>
+            <select id="level">
+                <option value="select">Select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+
+        <div id="skill-container" style="display: none;">
+            <h2>Skill</h2>
+            <!-- JavaScript-generated skill dropdowns and buttons go here -->
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("level").addEventListener("change", function() {
+            var selectedValue = this.value;
+            if (selectedValue >= "1" && selectedValue <= "5") {
+                createSkillDropdowns(selectedValue);
+                document.getElementById("skill-container").style.display = "block";
+            } else {
+                document.getElementById("skill-container").style.display = "none";
+            }
+        });
+
+        function createSkillDropdowns(skillCount) {
+            var skillContainer = document.getElementById("skill-container");
+            skillContainer.innerHTML = ''; // Clear existing content.
+
+            for (var i = 1; i <= skillCount; i++) {
+                var skillDiv = document.createElement("div");
+                skillDiv.className = "form-group";
+                skillDiv.innerHTML = `
+                    <label for="skill${i}">Select Skill ${i}:</label>
+                    <select id="skill${i}">
+                        <option value="select">Select</option>
+                        <option value="C">C</option>
+                        <option value="C++">C++</option>
+                        <option value="Java">Java</option>
+                        <option value="Python">Python</option>
+                    </select>
+                    <button id="attempt-test${i}" style="display: none;">Attempt Test</button>`;
+                skillContainer.appendChild(skillDiv);
+
+                // Add an event listener to show/hide the "Attempt Test" button and redirect
+                (function(i) {
+                    var skillSelect = document.getElementById(`skill${i}`);
+                    var attemptTestButton = document.getElementById(`attempt-test${i}`);
+
+                    skillSelect.addEventListener("change", function() {
+                        if (skillSelect.value !== "select") {
+                            attemptTestButton.style.display = "block";
+                            attemptTestButton.addEventListener("click", function() {
+                                var skillValue = skillSelect.value;
+                                window.location.href =`c_test.html`;
+                            });
+                        } else {
+                            attemptTestButton.style.display = "none";
+                        }
+                    });
+                })(i);
+            }
+        }
+    </script>
+</body>
+</html>
